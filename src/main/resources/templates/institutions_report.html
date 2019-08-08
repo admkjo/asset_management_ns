@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+<!-- 	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+ --><!-- Begin page -->
+	<div id="wrapper">
+	<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-file'></i> INSTITUTIONS REPORT
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget">
+
+							<div class="widget-content">
+								<br>
+								<div class="table-responsive">
+									<form class='form-horizontal' role='form'>
+										<table id="datatables-1"
+										class="table table-striped table-bordered" cellspacing="0"
+										width="100%">
+										<thead>
+											<tr>
+												<th>Type Of Vehicle</th>
+												<th>Year Of Manufacturing</th>
+												<th>Company Received From</th>
+												<th>Engine Number</th>
+												<th>Chassis Number</th>
+												<th>Date Received</th>
+												<th>Status</th>
+												<th>Reason</th>
+												<th>Attached Documents</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="institutionEntry : ${institutionEntries}">
+												<td th:text="${institutionEntry.typeOfVehicle}">Toyota</td>
+												<td th:text="${institutionEntry.manufYear}">2014-09-09</td>
+												<td th:text="${institutionEntry.companyReceivedFrom}">201125</td>
+												<td th:text="${institutionEntry.engineNumber}">320800</td>
+												<td th:text="${institutionEntry.chassisNumber}">Ministry of Education</td>
+												<td th:text="${institutionEntry.dateReceived}">20-02-03</td>
+												<td th:text="${institutionEntry.status}">20-02-03</td>
+												<td th:text="${institutionEntry.reasonIfAuctioned}">20-02-03</td>
+												<td><a href='<spring:url value="attached_docs" />'>
+												click to view attached docs</a></td>
+											</tr>
+
+										</tbody>
+									</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+		</div>
+	<!-- End of page -->
+		<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+		<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

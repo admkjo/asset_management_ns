@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+ 
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<span style="float: right;"> <a
+					th:href="@{compose_letter}"
+					class="btn btn-danger btn-lg">Back</a></span>
+            		<h1><i class='fa fa-file'></i> Letter Preview</h1>
+            		            	</div>
+				<!-- Page Heading End-->
+			<!-- Your awesome content goes here -->
+				<div class="widget invoice">
+					<div class="widget-content padding">
+					<div class="row">
+						<div class="col-sm-offset-4 col-sm-5">
+							<h1><strong>CONFIDENTIAL</strong></h1>
+						</div>
+					</div>
+					
+					<div class="bill-to">
+						<div class="row">
+							
+							<div class="col-sm-offset-8 col-sm-6"><br>
+								<h2><strong>NATIONAL SECURITY</strong>
+									
+								</h2>
+							</div>
+						</div>
+					</div>
+
+					<br><br>
+					
+					<div class="table-responsive">
+						
+						<table class="">
+							<thead>
+								<tr>
+									<th>MEMO:</th>
+								</tr>
+								<tr>
+									<th>TO:</th>
+								</tr>
+								<tr>
+									<th>FROM:</th>
+								</tr>
+								<tr>
+									<th>INFO:</th>
+								</tr>
+								<tr>
+									<th>DATE:</th>
+								</tr>
+								<tr>
+									<th>SUBJECT:</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								
+							</tbody>
+							
+						</table>
+						<br><br>
+
+					</div>
+					</div>
+				</div>
+				<!-- End of your awesome content -->
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

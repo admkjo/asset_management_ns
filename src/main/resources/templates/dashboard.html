@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!--  content starts here -->
+				<div class="content">
+					<!-- Start info box -->
+					<form>
+						<div class="row top-summary">
+							<div class="col-lg-3 col-md-6">
+								<div class="widget green-1 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												NUMBER OF VEHICLES<b> (INSTITUTIONS)</b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${totalInstitution}"
+													data-duration="3000">0</span>
+											</h2>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="widget blue-2 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												NUMBER OF VEHICLES <b> (SUPPLIERS)</b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${totalSuppliers}" data-duration="3000">0</span>
+											</h2>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6">
+								<div class="widget darkblue-2 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												TOTAL RECONCILED <b>VEHICLES</b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${totalReconciledVehicles}"
+													data-duration="3000">0</span>
+											</h2>
+
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="col-lg-3 col-md-6">
+								<div class="widget pink-1 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												UNRECONCILED VEHICLES <b>(SUPPLIERS)</b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${unreconciledSuppliersVehicles}"
+													data-duration="3000">0</span>
+											</h2>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="widget lightblue-2 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												UNRECONCILED VEHICLES <b> (INSTITUTIONS) </b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${unreconciledInstitutionVehicles}"
+													data-duration="3000">0</span>
+											</h2>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+ -->
+							<div class="col-lg-3 col-md-6">
+								<div class="widget blue-1 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												TOTAL NUMBER OF UNRECONCILED VEHICLES <b> </b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${totalUnReconciledVehicles}"
+													data-duration="3000">0</span>
+											</h2>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="widget red-1 animated fadeInDown">
+									<div class="widget-content padding">
+										<div class="widget-icon">
+											<i class=""></i>
+										</div>
+										<div class="text-box">
+											<p class="maindata">
+												AUCTIONED <b>VEHICLES</b>
+											</p>
+											<h2>
+												<span class="animate-number"
+													th:attr="data-value=${auctionedvehicles}"
+													data-duration="3000">0</span>
+											</h2>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</form>
+					<!-- End of info box -->
+
+				</div>
+
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+ <!-- Begin page -->
+	<div id="wrapper">
+	<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<span style="float: right;"> <a th:href='@{add_institution}'
+						class="btn btn-success btn-lg">Add New Institution</a></span>
+					<h1>
+						<i class='fa fa-file'></i> INSTITUTIONS
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+                  <div th:if="${flash != null}" 
+					th:classappend="${#strings.toLowerCase(flash.status)}" class="alert flash" >
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <span th:text="${flash.message}"></span>
+                 </div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget">
+
+							<div class="widget-content">
+								<br>
+								<div class="table-responsive">
+									<form class='form-horizontal' role='form'>
+										<table id="datatables-1"
+											class="table table-striped table-bordered" cellspacing="0"
+											width="100%">
+											<thead>
+												<tr>
+													<th>Institution Name</th>
+													<th>Ministry / Agency</th>
+													<th>User Id</th>
+													<th>Password</th>
+													<th>Edit</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="user : ${users}">
+													<td th:text="${user.departmentIdentifier}">GHANA EDUCATION SERVICE</td>
+													<td th:text="${user.ministryDescription}">MINISTRY OF EDUCATION</td>
+													<td th:text="${user.username}">education1</td>
+													<td th:text="${user.password}">educat1234</td>
+												     <td><a th:href='@{edit_institution(id=${user.username})}' >Select</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+		</div>
+	<!-- End of page -->
+		<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+		<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

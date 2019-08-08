@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-envelope'></i>Inbox
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<!-- Begin Inbox -->
+				<div class="widget transparent box-messages">
+					<div class="row">
+						<div class="col-sm-3 col-sm-offset-9">
+							<form class="form-horizontal" role="form">
+								<div class="col-sm-9 col-sm-offset-3">
+									<div class="form-group form-search search-box has-feedback">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-3">
+							<!-- Sidebar Message -->
+							<div class="btn-group new-message-btns stacked">
+								<a th:href="@{/compose_memo}"
+									class="btn btn-success btn-lg col-xs-10">Compose</a> <a
+									class="btn btn-success md-trigger col-xs-2 btn-lg"
+									data-modal="new-message"><i class="icon-pencil"></i></a>
+							</div>
+							<div class="list-group menu-message">
+								<a th:href="@{/inbox_memo}" class="list-group-item"><i
+									class="icon-inbox"></i> Inbox </a> 
+								<a th:href="@{/sent_memo}" class="list-group-item"><i
+									class="icon-export"></i> Sent</a>
+							</div>
+
+						</div>
+						<!-- ENd div .col-md-2 -->
+
+						<div class="col-md-9">
+							<div class="mail-list">
+								<div class="clearfix"></div>
+
+								<!-- Message table -->
+
+
+								<div class="widget">
+
+									<div class="widget-content">
+										<br>
+										<div class="table-responsive">
+											<form class='form-horizontal' role='form'>
+												<table id="datatables-1"
+													class="table table-striped table-bordered" cellspacing="0"
+													width="100%">
+													<thead>
+														<tr>
+															<th>Title</th>
+															<th>From</th>
+															<th>Date</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="inboxMemo : ${inbox}">
+															<td th:text="${inboxMemo.subject}">GHANA EDUCATION SERVICE</td>
+															<td th:text="${inboxMemo.sender}">MINISTRY OF EDUCATION</td>
+															<td th:text="${inboxMemo.date}">education1</td>
+															<td ><a href="#"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+														</tr>
+													</tbody>
+												</table>
+											</form>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- End message table -->
+
+							</div>
+						</div>
+						<!-- End div .col-md-10 -->
+					</div>
+					<!-- End div .row -->
+				</div>
+				<!-- End div .box-info -->
+				<!-- End inbox -->
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

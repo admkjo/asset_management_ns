@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<span style="float: right;"> <a th:href="@{compose_letter}"
+						class="btn btn-danger btn-lg">Back</a></span> <span
+						onclick="printDiv('printableArea')" style="float: right;">
+						<a class="btn btn-success btn-lg">print</a>
+					</span>
+					<h1>
+						<i class='fa fa-file'></i> Letter Preview
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+				<!-- Your awesome content goes here -->
+				<div id="printableArea">
+					<div class="widget invoice">
+						<div class="widget-content padding">
+							<h3 style="text-align: center; margin-top: -50px;">
+								<strong>CONFIDENTIAL</strong>
+							</h3>
+							<div class="head">
+								<div
+									style="text-align: justify; float: left; color: blue; width: 32%; font-style: italic;">
+									<p style="text-align: justify; color: blue;">In case of reply the</p>
+									<p style="text-align: justify">number and date of this</p>
+									<p style="text-decoration: underline">letter should be
+										quoted</p><br>
+								    <p> My Ref. No: ...................</p>
+								    <p> Your Ref. No: .................</p>
+								</div>
+								<div style="float: left; width: 30%;">
+
+									<img th:src="@{images/users/default-user.png}"
+										class="img-responsive not-logged-avatar">
+										<p style="margin-left:20%; font-size: 13px; margin-top: -5px;" >REPUBLIC OF GHANA</p>
+								</div>
+								<div style="width: 30%; float: right;">
+									<p>MINISTRY OF NATIONAL SECURITY</p>
+									<p>P. O. BOX 1627</p>
+									<p>CASTLE ANNEX</p>
+									<p>ACCRA</p>
+
+								</div>
+							</div>
+							<div style="clear:right;" ></div>
+							<div style="clear:left;" ></div>
+							<br>
+							<div class="row">
+								<div class="col-sm-6">
+									<br>
+									<p th:text=${letters.recipient}></p>
+									<p th:text=${letters.subject}></p>
+									<p>28-Sept, 2017</p>
+									<p th:text=${letters.content}></p>
+								</div>
+							</div>
+							<br>
+							<div class="table-responsive"></div>
+						</div>
+					</div>
+				</div>
+				<!-- End of your awesome content -->
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+	<script>
+		function printDiv(divName) {
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+		}
+	</script>
+</body>
+</html>

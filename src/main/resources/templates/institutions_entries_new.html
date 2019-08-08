@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<link th:href="@{/assets/libs/dropzone/css/dropzone.css}"
+	rel="stylesheet" type="text/css" />
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: institutions_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<span style="float: right;"> <a
+						th:href='@{institutions_entries}' class="btn btn-danger btn-lg">CANCEL</a></span>
+					<h1>
+						<i class='fa fa-file'></i> ENTRIES
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<div  class="row">
+					<div  class="widget">
+						<div style= "overflow: scroll" class="widget-content padding">
+							<form enctype="multipart/form-data"
+								th:object="${institutionEntry}"
+								th:action="@{/institutions_entries_new}" th:method="post"
+							role='form'>
+								<input type="button" value="Add Row"
+									onclick="addRow('dataTable')" /> <input type="button"
+									value="Delete Row" onclick="deleteRow('dataTable')" /> <br>
+								<hr>
+								<table class="table table-striped table-bordered"
+									cellspacing="0" width="100%">
+									<tr>
+										<td>Select</td>
+										<td	>TYPE OF VEHICLE</td>
+										<td>YEAR OF MANUFACTURING</td>
+										<td>ENGINE NUMBER</td>
+										<td>CHASIS NUMBER</td>
+										<td>COMPANY RECEIVED FROM</td>
+										<td>DATE RECEIVED</td>
+										<td>STATUS</td>
+										<td>REASON</td>
+									</tr>
+									<tbody id="dataTable">
+										<tr>
+											<td><input class="form-control" id="nostyle"
+												type="checkbox" name="chk[]" /></td>
+											<td><input style="width:200px;" type="text" class="form-control"
+												id="input-text" placeholder="" name="typeOfVehicle">
+											</td>
+											<td><input style="width:100px;" type="text" class="form-control"
+												id="input-text-help" placeholder="" name="manufYear"></td>
+											<td><input style="width:200px;"  type="text" class="form-control"
+												id="input-text-help" placeholder=""
+												name="engineNumber"></td>
+											<td><input style="width:200px;"  type="text" class="form-control"
+												id="input-text-help" placeholder=""
+												name="chassisNumber"></td>
+											<td><select style="width:200px;"  class="form-group form-control"
+												name="companyReceivedFrom">
+													<option value="">Select an option</option>
+													<option th:each="supplier : ${suppliers}"
+														th:text="${supplier.name}" th:value="${supplier.name}">Company name</option>
+											</select></td>
+											<td><input  type="date" class="form-control datepicker-input"
+										name="dateReceived"></td>
+											<td><select class=" form-control" style="width:150px;"  name="status">
+										<option value="">Select an option</option>
+										<option th:value="AUCTIONED">Auctioned</option>
+									</select></td>
+									<td><input type="text" class="form-control" style="width:200px;" 
+												id="input-text-help" placeholder=""
+												name="reasonIfAuctioned"></td>
+
+										</tr>
+									</tbody>
+								</table>
+								<div>
+									<button style="width: 250px;" class=" btn btn-lg btn-success "
+										type="submit" name="submitd">Save Transaction</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!--  content Ends here -->
+
+			<div class="row">
+				<div class="col-md-12 portlets"></div>
+			</div>
+
+			<!-- Footer Start -->
+			<footer>
+				Ministry of National Security &copy; 2017
+				<div class="footer-links pull-right"></div>
+			</footer>
+			<!-- Footer End -->
+		</div>
+		<!-- ============================================================== -->
+		<!-- End content here -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: Entries_footer (~{::title})"></div>
+	<script th:src="@{/assets/libs/dropzone/dropzone.min.js}"></script>
+	<SCRIPT language="javascript">
+		function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var colCount = table.rows[0].cells.length;
+
+			for (var i = 0; i < colCount; i++) {
+
+				var newcell = row.insertCell(i);
+
+				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch (newcell.childNodes[0].type) {
+				case "text":
+					newcell.childNodes[0].value = "";
+					break;
+				case "checkbox":
+					newcell.childNodes[0].checked = false;
+					break;
+				case "select-one":
+					newcell.childNodes[0].selectedIndex = 0;
+					break;
+				}
+			}
+		}
+
+		function deleteRow(tableID) {
+			try {
+				var table = document.getElementById(tableID);
+				var rowCount = table.rows.length;
+				for (var i = 0; i < rowCount; i++) {
+					var row = table.rows[i];
+					var chkbox = row.cells[0].childNodes[0];
+					if (null != chkbox && true == chkbox.checked) {
+						if (rowCount <= 1) {
+							alert("Cannot delete all the rows.");
+							break;
+						}
+						table.deleteRow(i);
+						rowCount--;
+						i--;
+					}
+
+				}
+			} catch (e) {
+				alert(e);
+			}
+		}
+	</SCRIPT>
+
+</body>
+</html>

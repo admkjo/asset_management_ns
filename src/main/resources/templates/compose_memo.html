@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+
+<link th:href="@{assets/libs/summernote/summernote.css}"
+	rel="stylesheet" type="text/css" />
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-envelope'></i>Create Memo
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+                <div th:if="${flash != null}" 
+					th:classappend="${#strings.toLowerCase(flash.status)}" class="alert flash" >
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <span th:text="${flash.message}"></span>
+                 </div>
+				<!-- Your awesome content goes here -->
+
+				<div class="box-info box-messages animated fadeInDown">
+					<div class="row">
+						<div class="col-md-3">
+							<!-- Sidebar Message -->
+
+							<div class="btn-group new-message-btns stacked">
+								<a th:href="@{/inbox_memo}"
+									class="btn btn-primary btn-lg btn-block text-left"><i
+									class="icon-left-open-1"></i> Back to Inbox</a>
+							</div>
+							<div class="list-group menu-message">
+								<a th:href="@{/inbox_memo}" class="list-group-item"><i
+									class="icon-inbox"></i> Inbox </a> <a th:href="@{/draft_memo}"
+									class="list-group-item"><i class="icon-pencil"></i> Draft </a>
+								<a th:href="@{/sent_memo}" class="list-group-item"><i
+									class="icon-export"></i> Sent</a>
+							</div>
+						</div>
+						<!-- ENd div .col-md-2 -->
+
+
+						<div class="col-md-9">
+							<div class="widget">
+								<div class="widget-content padding">
+										<!-- Modal -->
+										<div id="myModal" class="modal fade" role="dialog">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content">
+												<div class="modal-header">
+												<h4>Add Receipients to memo</h4>
+												</div>
+													<div class="modal-body">
+													<table class="table table-responsive" id="tblContacts">
+													<thead>
+													<tr>
+													<th></th>
+													<th>Name</th>
+													<th>Department</th>
+													<th>Position</th>
+													<th>Username</th>
+													</tr>
+													</thead>
+													<tbody>
+													<tr th:each="user : ${internalContacts}">
+													<td ><input type="checkbox" th:value="${user.username}" class="test"></td>
+													<td th:text="${user.name}"></td>
+													<td th:text="${user.departmentIdentifier}"></td>
+													<td th:text="${user.position}"></td>
+													<td th:text="${user.username}" class="username"></td>
+													</tr>
+													</tbody>
+													</table>
+													</div>
+													<div class="modal-footer">
+												<button type="button" class="btn btn-primary btn-add-contacts"
+															>Add Contacts</button>
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<!-- Modal End -->
+									<form th:action="@{/compose_memo}" th:object="${memo}"
+									 method="post" role="form" class="form-horizontal">
+										<div class="form-group">
+											<div class="col-sm-10 col-xs-8">
+												<span data-toggle="modal" data-target="#myModal"
+												 id="myModal" class="btn btn-success"> <i
+													class="fa fa-users"></i> Select Receipts
+												</span>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-1">To:</label>
+											<div class="col-sm-11">
+												<input name="to" type="text" class="form-control to-field" >
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-1">Subject:</label>
+											<div class="col-sm-11">
+												<input th:field="*{subject}" type="text" class="form-control " >
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<textarea th:field="*{content}"  class="summernote-small form-control"></textarea>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-8">
+												<button type="submit" class="btn btn-success">
+													<i class="icon-paper-plane-1"></i> Send
+												</button>
+												<button type="submit" class="btn btn-danger">Save
+													as Draft</button>
+												<a th:href="@{/memo_preview}"><span
+													class="btn btn-blue-1">Preview</span></a>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of your awesome content -->
+
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+	<script th:src="@{assets/libs/summernote/summernote.js}"></script>
+	<script th:src="@{assets/js/pages/new-message.js}"></script>
+	<script type="text/javascript">
+		$(".btn-add-contacts").on('click', function(){
+		
+			function updateRecepients() {         
+			     var selectedContacts = [];
+			     $('#tblContacts :checked').each(function() {
+			    	 selectedContacts.push($(this).val());
+			     });
+			     $('.to-field').val(selectedContacts);
+			  }
+			
+			 $(function() {
+			   $('#tblContacts input').click(updateRecepients);
+			   updateRecepients();
+			 });
+
+	}); 
+	</script>
+
+
+</body>
+</html>

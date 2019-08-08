@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org">
+<title>NS Asset Management - Add Vehicle Record</title>
+<head th:include="fragments/body :: head (~{::title})">
+<body class="fixed-left">
+
+	<!-- Begin page -->
+	<div id="wrapper">
+
+		<!-- Topbar -->
+		<div th:include="fragments/body :: topbar (~{::title})"></div>
+
+		<!-- Left Sidebar -->
+		<div th:include="fragments/body :: sidebar (~{::title})"></div>
+
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="container">
+
+					<!-- Page-Title -->
+					<div class="row">
+						<div class="col-sm-12">
+							<ol class="breadcrumb pull-right">
+								<li><a href="#">Transactions</a></li>
+								<li><a href="#">Vehicles</a></li>
+								<li class="active">Vehicle Stuffs</li>
+							</ol>
+						</div>
+						  
+					<!-- EOF DIV for filling other applications -->
+					</div>
+                  <div class="container" th:if="${flash != null}">
+                    <div th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" class="flash">
+                    <i class="pull-right fa fa-save"><a class="close" id="iconTimes">&times;</a></i>
+                    </div>
+                    </div>
+					<div class="panel">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="m-b-30"></div>
+								</div>
+							</div>
+	             <form class="" th:action="@{/vehicles}" th:object="${vehicle}" method="post">
+                 <div class="table-responsive">
+				<table class="table table-borderless">
+				           <tr>
+				           <input type="hidden" id="typeId" name="id"/>
+				           </tr>
+							  <tr>
+          <td>
+                <label class="col-xs-6 control-label">Type of Vehicle <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control clear" th:field="*{type}"/>
+                </div>
+            </td>
+            <td>
+                <label class="col-xs-6 control-label">Year of Manufacturing <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control datepicker clear"/>   
+                </div>
+            </td>
+           </tr>
+           				  <tr>
+            <td>
+                <label class="col-xs-6 control-label">Quantity <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control clear" th:field="*{quantity}"/>   
+                </div>
+            </td>
+            <td>
+                <label class="col-xs-6 control-label">Institution Supplied To<span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control clear" th:field="*{institutionSuppliedTo}"/>   
+                </div>
+            </td>
+           </tr>
+           				  <tr>
+          <td>
+                <label class="col-xs-6 control-label">Engine Number(s) <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control clear" name="ministrySuppliedTo"/>
+                </div>
+            </td>
+            <td>
+                <label class="col-xs-6 control-label">Chassis Number(s) <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control clear" name="ministrySuppliedTo"/>   
+                </div>
+            </td>
+           </tr>
+           				  <tr>
+          <td>
+                <label class="col-xs-6 control-label">Date Supplied <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control datepicker clear" />
+                </div>
+            </td>
+            <td>
+                <label class="col-xs-6 control-label">Import Duty Exemption <span style="color:blue;font-weight:bolder;">*</span></label>
+                <div class="col-xs-6">
+                    <label><input type="radio" name="optionsRadios"
+					class="dutyExemOptions" value="1"> Yes
+					</label> 
+					<label><input type="radio" name="optionsRadios"
+						class="dutyExemOptions" value="0"> No
+					</label> 
+                </div>
+            </td>
+           </tr>
+           				  <tr>
+          <td>
+                
+            </td>
+            <td id="dutyExemptDoc">
+                <label class="col-xs-6 control-label">Import Exemption Document</label>
+                <div class="col-xs-6">
+                    <input type="text" class="form-control clear"  th:field="*{ministrySuppliedTo}"/>   
+                </div>
+            </td>
+           </tr>
+				                 </table>	 
+			                     </div>
+		                   <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary btnSaveSetup"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                              </div>
+                              </form>
+						</div>
+					</div>
+
+				</div>
+				<!-- container -->
+
+			</div>
+			<!-- content -->
+
+			<div th:include="fragments/body :: footer (~{::title})"></div>
+
+			<script th:inline="javascript">
+			/*<![CDATA[*/
+			$(document).ready(function(){
+				
+				$('.datepicker').datepicker();
+				
+				$("#dutyExemptDoc").hide();
+				
+				$('input:radio[name="optionsRadios"]').change(
+					    function(){
+					        if (this.checked && this.value == "1") {
+					        	$("#dutyExemptDoc").show();    
+					        }else{
+					        	$("#dutyExemptDoc").hide();
+					        }
+					    });
+				
+				function bootBoxMsgs(msg,dialogTitle,size){
+					bootbox.dialog({
+						title: dialogTitle,
+						size: size,
+						message: msg,
+						buttons: {
+				         	success:{
+				         		label: "Ok",
+				         		className: "btn-primary",
+				         }
+				         	}
+					});
+				}
+					 
+				});
+			/*]]>*/
+			</script>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Right content here -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+</body>
+</html>

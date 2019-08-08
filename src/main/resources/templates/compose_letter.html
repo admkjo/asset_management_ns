@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+
+<link th:href="@{assets/libs/summernote/summernote.css}"
+	rel="stylesheet" type="text/css" />
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-envelope'></i>Compose Letter
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<!-- Your awesome content goes here -->
+
+				<div class="box-info box-messages animated fadeInDown">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="list-group menu-message ">
+								<!-- <a th:href="@{/inbox_letters}" class="list-group-item"><i
+									class="icon-inbox"></i> Inbox </a> -->
+								<a th:href="@{/draft_letters}"
+									class="list-group-item btn-default"><i class="icon-pencil"></i>
+									Draft </a> 
+							</div>
+						</div>
+						<!-- ENd div .col-md-2 -->
+
+						<div class="col-md-9">
+							<div class="widget">
+								<div class="widget-content padding">
+									<form th:action="@{/compose_letter}" th:object="${letter}"
+										method="post" role="form" class="form-horizontal ">
+										<div class="form-group">
+												<label class="col-xs-2 control-label">Select Recipient</label>
+												<div class="col-xs-10">
+													<select th:field="*{recipient}" class="form-control">
+														<option th:each="user : ${users}"
+														th:value="${user.username}"
+														th:text="${user.username}" >1</option>
+														
+													</select>
+												</div>
+											</div>
+										<div class="form-group">
+											<label class="control-label col-sm-1">Subject:</label>
+											<div class="col-sm-11" th:if="${savedLetter ne ''}">
+										    <input name="letterId" type="hidden"
+													class="form-control" th:value="${savedLetter.letterId}">
+											</div>
+											<div class="col-sm-11" th:if="${savedLetter eq ''}">
+										    <input name="subject" type="text"
+													class="form-control">
+											</div>
+											<div class="col-sm-11" th:if="${savedLetter ne ''}">
+										    <input name="subject" type="text"
+													class="form-control" th:value="${savedLetter.subject}">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-12" th:if="${savedLetter eq ''}">
+												<textarea name="content"
+													class="summernote-small form-control"></textarea>
+											</div>
+											<div class="col-sm-12" th:if="${savedLetter ne ''}">
+												<textarea name="content"
+													class="summernote-small form-control" 
+													th:text="${savedLetter.content}"></textarea>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-8">
+												<button type="submit" class="btn btn-success">
+													<i class="icon-paper-plane-1"></i>Preview
+												</button>
+												<!-- <button type="submit" class="btn btn-danger">Save
+													as Draft</button> -->
+											<!-- 	<a th:href="@{/letter_preview(id=${recipient})}" target="_blank"><button
+													class="btn btn-danger">Preview</button></a> -->
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of your awesome content -->
+
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+	<script th:src="@{assets/libs/summernote/summernote.js}"></script>
+	<script th:src="@{assets/js/pages/new-message.js}"></script>
+	<script>
+		function getSelectedContacts() {
+			var checkedValues = $('.recip:checked').map(function() {
+				return this.value;
+			}).get();
+			console.log(checkedValues);
+		}
+
+		$(document).ready(function() {
+			$("#close").click(function() {
+				getSelectedContacts();
+			});
+		});
+	</script>
+
+</body>
+</html>

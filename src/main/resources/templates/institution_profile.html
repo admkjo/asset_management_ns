@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<!-- 	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+ -->
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: institutions_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-file'></i> INSTITUTION PROFILE
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1 portlets">
+						<div class="widget">
+							<div class="widget-content padding">
+								<form class="form-horizontal" role="form"
+									th:action="@{/institution_profile}" th:object="${institution}"
+									method="post">
+									<div class="form-group">
+										<label for="input-text" class="col-sm-2 control-label">
+											Institution Name </label>
+										<div class="col-sm-10">
+										<input type="hidden" name="institutionId" th:value="${institutionDetails.institutionId}"/>
+											<input type="text" class="form-control" id="input-text"
+												placeholder="" name="name" th:value="${institutionDetails.name}" readonly>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="input-text-help" class="col-sm-2 control-label">
+											Address</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="input-text-help"
+												placeholder="" th:field="*{address}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="inputPassword"
+												placeholder="" th:field="*{email}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="input-text-help" class="col-sm-2 control-label">
+											Phone</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="input-text-help"
+												placeholder="" th:field="*{phone}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="input-text-help" class="col-sm-2 control-label">
+											Company's Representative's Name</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="input-text-help"
+												placeholder="" th:field="*{representativeName}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="input-text-help" class="col-sm-2 control-label">
+											Company's Representative's Position</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="input-text-help"
+												placeholder="" th:field="*{representativePosition}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="input-text-help" class="col-sm-2 control-label">
+											Company's Representative's Phone</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="input-text-help"
+												placeholder="" th:field="*{representativeContact}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="input-text-help" class="col-sm-2 control-label">
+											Company's Representative's Email</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="input-text-help"
+												placeholder="" th:field="*{representativeEmail}">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-offset-1 col-sm-3">
+											<button type="submit" class="btn btn-lg btn-blue-3">Save</button>
+										</div>
+										<!-- <div class="col-sm-3">
+											<a th:href=@{institution_profile}>
+												<div class="btn btn-danger btn-lg">Cancel</div>
+											</a>
+										</div> -->
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

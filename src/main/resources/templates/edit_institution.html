@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<style>
+.form-control{
+color: blue;
+}
+</style>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<span style="float: right;"> <a th:href="@{/institutions}"
+						class="btn btn-danger btn-lg">Cancel</a></span>
+					<h1>
+						<i class='fa fa-file'></i>Edit Institution
+					</h1>
+
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<div class="row">
+					<div class="widget">
+						<div class="widget-content padding">
+							<form th:method="post" th:action="@{/edit_institution}" th:object="${user}" 
+							        class="form-horizontal" role="form">
+
+								<div class="form-group">
+									<label for="input-text" class="col-sm-2 control-label">Institution
+										Name</label>
+									<div class="col-sm-10">
+										<div style="display:none">	
+									<input type="hidden" th:field="*{userId}" />
+									<input type="hidden" th:field="*{name}" />
+									<input type="hidden" th:field="*{position}" />
+									<input type="hidden" th:field="*{roleId}" />
+									<input type="checkbox" name="isAccountNonExpired" th:value="true" />
+									<input type="checkbox" name="isAccountNonLocked" th:value="true" />
+									<input type="checkbox" name="isCredentialsNonExpired" th:value="true" />
+									<input type="checkbox" name="isEnabled" th:value="true" />
+									</div>
+										<input  required  type="text" class="form-control" 
+										th:field="*{departmentIdentifier}"	placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-text" class="col-sm-2 control-label">Ministry
+										/ Agency</label>
+									<div class="col-sm-10">
+										<input  required type="text" class="form-control" 
+									th:field="*{ministryDescription}"	placeholder="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="input-text" class="col-sm-2 control-label">User
+										Id</label>
+									<div class="col-sm-10">
+										<input  required type="text" class="form-control"
+									th:field="*{username}"		placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="input-text" class="col-sm-2 control-label">Password</label>
+									<div class="col-sm-10">
+										<input  required type="text" class="form-control" 
+									th:field="*{password}"		placeholder="">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-8 col-sm-offset-2 ">
+										<button type="submit" class="btn btn-lg btn-blue-3">Update</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

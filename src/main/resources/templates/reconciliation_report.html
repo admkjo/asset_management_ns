@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+<!-- 	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+ --><!-- Begin page -->
+	<div id="wrapper">
+	<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-file'></i>RECONCILIATION REPORT
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<div class="row">
+
+				<div class="col-md-12">
+					<div class="widget">
+
+						<div class="widget-content">
+							<br>
+							<div class="table-responsive">
+							<table>
+							<tbody>
+							<tr class="col-xs-12">
+							<td>
+						<label for="input-text" class="col-xs-6 control-label">Select Institution</label>
+						<div class="col-xs-6">
+						<form th:action="@{/updateSuppliersEntries}" th:method="get" id="updateSuppliersEntries">
+						<input type="hidden" name="institution" id="supplier"/>
+						</form>
+						<select id="optInstitution" class="form-control">
+						<option>Select an option</option>
+						</select>
+							</div>
+							</td>
+							<td>
+						<div class="form-group">
+						<label for="input-text" class="col-xs-6 control-label">Select Supplier</label>
+						<div class="col-xs-6">
+						<select class="form-control">
+						<option>Select an option</option>
+						</select>
+						</div>
+							</div>
+							</td>
+							</tr>
+							</tbody>
+							</table>
+								<form class='form-horizontal' role='form'>
+									<table id="datatables-1"
+										class="table table-striped table-bordered" cellspacing="0"
+										width="100%">
+										<thead>
+											<tr>
+												<th>Type Of Vehicle</th>
+												<th>Year Of Manufacturing</th>
+												<th>Chasis Number (Institution)</th>
+												<th>Chasis Number (Supplier)</th>
+												<th>Engine Number(Institution)</th>
+												<th>Engine Number(Supplier)</th>
+												<th>Reconciled</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="reconReport : ${reconciliationReport}">
+												<td th:text="${reconReport.typeOfVehicle}">TOYOTA COROLLA</td>
+												<td th:text="${reconReport.manufYear}">2014</td>
+												<td th:text="${reconReport.chassisNumber}">IG LPK5SC9UY577757</td>
+												<td th:text="${reconReport.chassisNumber}">IG LPK5SC9UY577757</td>
+												<td th:text="${reconReport.engineNumber}">A17DTE</td>
+												<td th:text="${reconReport.engineNumber}">A17DTE</td>
+												<td th:text="Yes">YES</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+				<!--  content Ends here -->
+
+				<div class="row">
+					<div class="col-md-12 portlets"></div>
+				</div>
+
+				<!-- Footer Start -->
+				<footer>
+					Ministry of National Security &copy; 2017
+					<div class="footer-links pull-right"></div>
+				</footer>
+				<!-- Footer End -->
+			</div>
+			<!-- ============================================================== -->
+			<!-- End content here -->
+			<!-- ============================================================== -->
+
+		</div>
+		<!-- End right content -->
+		</div>
+	<!-- End of page -->
+		<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+		<div th:include="fragments/body :: footer (~{::title})"></div>
+		<script>
+		$(document).ready(function(){
+			$('#optInstitution').change(function(){
+				var selectOption=$('#optInstitution option:selected').html();
+				$("#supplier").val(selectOption);
+				$("#updateSuppliersEntries").submit();
+			});
+		});
+		</script>
+
+</body>
+</html>

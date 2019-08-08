@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>NS Asset Management - Institutions</title>
+<head th:include="fragments/body :: head (~{::title})"></head>
+<body class="fixed-left">
+	<div th:include="fragments/body :: logout_modal (~{::title})"></div>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<div th:include="fragments/body :: admin_navbar (~{::title})"></div>
+		<!-- Start right content -->
+		<div class="content-page">
+			<!-- ============================================================== -->
+			<!-- Start Content here -->
+			<!-- ============================================================== -->
+			<div class="content">
+				<!-- Page Heading Start -->
+				<div class="page-heading">
+					<h1>
+						<i class='fa fa-envelope'></i>Content
+					</h1>
+				</div>
+				<!-- Page Heading End-->
+
+				<!--  content starts here -->
+
+				<!-- Begin Inbox -->
+				<div class="widget transparent box-messages">
+					<div class="row">
+						<div class="col-sm-3 col-sm-offset-9">
+							<form class="form-horizontal" role="form">
+								<div class="col-sm-9 col-sm-offset-3">
+									<div class="form-group form-search search-box has-feedback">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-3">
+							<!-- Sidebar Message -->
+							<div class="btn-group new-message-btns stacked">
+								<a th:href="@{/compose_letter}"
+									class="btn btn-success btn-lg col-xs-10">Compose</a> <a
+									class="btn btn-success md-trigger col-xs-2 btn-lg"
+									data-modal="new-message"><i class="icon-pencil"></i></a>
+							</div>
+							<div class="list-group menu-message">
+								<!-- <a th:href="@{/inbox_letters}" class="list-group-item"><i
+									class="icon-inbox"></i> Inbox </a> -->
+								<a th:href="@{/draft_letters}" class="list-group-item"><i
+									class="icon-pencil"></i> Draft </a> <a th:href="@{/sent_letters}"
+									class="list-group-item"><i class="icon-export"></i> Sent</a>
+							</div>
+
+						</div>
+						<!-- ENd div .col-md-2 -->
+
+						<div class="col-md-9">
+							<div class="widget">
+								<div class="col-sm-12">
+									<!-- Begin read message -->
+									<!-- Message -->
+									<div class="row">
+										<div class="col-sm-8">
+											<h3 class="semibold">Greetings! You just won the
+												lottery.</h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="mail-sender-details">
+												<img src="images/users/chat/19.jpg"
+													class="img-circle sender-photo"> <small><b>Carmen
+														Electron</b> <span class="text-muted">carmen@electron.com</span><br>
+												<span class="text-muted">January 17, 2014 at 04:45 AM
+														(PDT)</span></small>
+											</div>
+										</div>
+										<div class="col-sm-6 text-right"></div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12 mail-body">
+											<hr>
+											<p>Dear John,</p>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
+												elit. Integer ullamcorper dictum elementum. Aenean mollis
+												felis in laoreet volutpat. In viverra, metus in porta
+												hendrerit, eros erat suscipit mauris, in interdum nisi nisl
+												ac neque. Morbi dictum consectetur bibendum. Etiam risus
+												magna, aliquet eget accumsan eleifend, lobortis ornare orci.
+												Nam quam sapien, fermentum vitae blandit nec, ullamcorper eu
+												libero. Donec viverra hendrerit aliquet.</p>
+											<hr>
+
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- End div .col-md-10 -->
+					</div>
+					<!-- End div .row -->
+
+					<!-- End div .col-md-10 -->
+				</div>
+				<!-- End div .row -->
+			</div>
+			<!-- End div .box-info -->
+			<!-- End inbox -->
+
+			<!--  content Ends here -->
+
+			<div class="row">
+				<div class="col-md-12 portlets"></div>
+			</div>
+
+			<!-- Footer Start -->
+			<footer>
+				Ministry of National Security &copy; 2017
+				<div class="footer-links pull-right"></div>
+			</footer>
+			<!-- Footer End -->
+		</div>
+		<!-- ============================================================== -->
+		<!-- End content here -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- End right content -->
+	</div>
+	<!-- End of page -->
+	<!-- the overlay modal element -->
+	<div class="md-overlay"></div>
+	<!-- End of eoverlay modal -->
+	<div th:include="fragments/body :: footer (~{::title})"></div>
+
+</body>
+</html>

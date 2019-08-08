@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org">
+<title>NS Asset Management - Add Vehicle Record</title>
+<head th:include="fragments/body :: head (~{::title})">
+<body class="fixed-left">
+
+	<!-- Begin page -->
+	<div id="wrapper">
+
+		<!-- Topbar -->
+		<div th:include="fragments/body :: topbar (~{::title})"></div>
+
+		<!-- Left Sidebar -->
+		<div th:include="fragments/body :: sidebar (~{::title})"></div>
+
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+				<div class="container">
+
+					<!-- Page-Title -->
+					<div class="row">
+						<div class="col-sm-12">
+						<a href="#" class="btn btn-primary add"><i
+								class="fa fa-plus-square" aria-hidden="true"></i> New</a> 
+							<form id="addVehicle" th:action="@{/vehicles/add}" method="get"></form>
+							<ol class="breadcrumb pull-right">
+								<li><a href="#">Transactions</a></li>
+								<li><a href="#">Vehicles</a></li>
+								<li class="active">Vehicle Stuffs</li>
+							</ol>
+						</div>
+						  
+					<!-- EOF DIV for filling other applications -->
+					</div>
+                  <div class="container" th:if="${flash != null}">
+                    <div th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" class="flash">
+                    <i class="pull-right fa fa-save"><a class="close" id="iconTimes">&times;</a></i>
+                    </div>
+                    </div>
+					<div class="panel">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="m-b-30"></div>
+								</div>
+							</div>
+							<div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+							<form id="manageCredentials" th:action="@{/}" method="get">
+								<table class="table table-bordered table-striped" id="datatable">
+									<thead>
+										<tr>
+										    <!-- <th>ID</th> -->
+											<th>Vehicle Type</th>
+											<th>Manuf. Year</th>
+											<th>Chassis Num.</th>
+											<th>Engine Num.</th>
+											<th>Qty</th>
+											<th>Institution Supplied To</th>
+											<th>Ministry Supplied To</th>
+											<th>Duty Exemp.</th>
+											<th>Date Supplied</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="" th:each="vehicle : ${vehicles}">
+					        <input type="hidden"  id="hpIdField" />
+											<td th:text="${vehicle.type}"></a></td>
+											<td th:text="${vehicle.manufYear}"></td>
+											<td th:text="WER345"></td>
+											<td th:text="QWER123"></td>
+											<td th:text="${vehicle.quantity}"></td>
+											<td th:text="${vehicle.institutionSuppliedTo}"></td>
+											<td th:text="${vehicle.ministrySuppliedTo}"></td>
+											<td th:text="No"></td>
+											<td th:text="20/12/2013"></td>
+											<td class="actions">
+								<a href="#" class="on-default " data-balloon-length="medium" data-balloon="Update Vehicle Info" data-balloon-pos="up"><i class="fa fa-pencil other-app"></i></a>
+											</td>
+										</tr>
+									</tbody>
+									<input type="hidden" class="idFieldTopass" name="hpId" />
+								</table>
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- container -->
+
+			</div>
+			<!-- content -->
+
+			<div th:include="fragments/body :: footer (~{::title})"></div>
+
+			<script th:inline="javascript">
+			/*<![CDATA[*/
+			$(document).ready(function(){
+				
+				$('.datepicker').datepicker();
+				
+				$(".add").on('click', function(){
+					$("#addVehicle").submit();
+				});
+					 
+				});
+			/*]]>*/
+			</script>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Right content here -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+</body>
+</html>
